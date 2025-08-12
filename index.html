@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draftosaurus - I.G.P.D.</title>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap"
+        as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap"
+        as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Fondos estáticos -->
+        <div class="background bg-main active" id="bg-main"></div>
+        <div class="background bg-interface" id="bg-interface"></div>
+        <div class="background bg-board" id="bg-board"></div>
+
+        <!-- Contenedor de componentes dinámicos -->
+        <div class="content-container">
+            <!-- Botón de regreso -->
+            <button class="back-button hidden" id="back-button">
+                <img src="img/icono-salir.svg" alt="Volver" width="24" height="24">
+            </button>
+
+            <!-- Pantalla principal -->
+            <div class="component main-screen active" id="main-screen">
+                <div class="logo-container">
+                    <img src="img/Logo-draftosaurus.png" alt="Draftosaurus Logo" class="main-logo">
+                    <h1 class="logo-title">DRAFTOSAURUS</h1>
+                    <p class="logo-subtitle">Sistema de Gestión de Partidas</p>
+                </div>
+
+                <div class="menu-buttons">
+                    <button class="btn btn-verde" onclick="showCreateGame()">
+                        <img src="img/icono_partidas-ganadas.png" alt="" class="btn-icon">
+                        Nueva Partida
+                    </button>
+                    <button class="btn btn-naranja" onclick="showTrackingMode()">
+                        <img src="img/icono_mapa.png" alt="" class="btn-icon">
+                        Modo Seguimiento
+                    </button>
+                    <button class="btn" onclick="showLogin()">
+                        <img src="img/foto_usuario-1.png" alt="" class="btn-icon">
+                        Iniciar Sesión
+                    </button>
+                    <button class="btn" onclick="showRegister()">
+                        <img src="img/icono_mail.png" alt="" class="btn-icon">
+                        Registrarse
+                    </button>
+                </div>
+            </div>
+
+            <!-- Formulario de crear partida -->
+            <div class="component form-container" id="create-game-form">
+                <div class="form-header">
+                    <img src="img/icono_partidas-ganadas.png" alt="" class="form-icon">
+                    <h2 class="form-title">Nueva Partida</h2>
+                </div>
+                <form id="new-game-form">
+                    <div class="form-group">
+                        <label class="form-label">Número de Jugadores</label>
+                        <select class="form-input" id="num-players" required>
+                            <option value="">Seleccionar...</option>
+                            <option value="2">2 Jugadores</option>
+                            <option value="3">3 Jugadores</option>
+                            <option value="4">4 Jugadores</option>
+                            <option value="5">5 Jugadores</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Nombre de la Partida</label>
+                        <input type="text" class="form-input" id="game-name" placeholder="Mi partida de Draftosaurus"
+                            required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="showMain()">Cancelar</button>
+                        <button type="submit" class="btn btn-verde">Crear Partida</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Formulario de inicio de sesión -->
+            <div class="component form-container" id="login-form">
+                <div class="form-header">
+                    <img src="img/foto_usuario-1.png" alt="" class="form-icon">
+                    <h2 class="form-title">Iniciar Sesión</h2>
+                </div>
+                <form id="login-form-element">
+                    <div class="form-group">
+                        <label class="form-label">Usuario</label>
+                        <input type="text" class="form-input" id="username" placeholder="Tu nombre de usuario" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Contraseña</label>
+                        <input type="password" class="form-input" id="password" placeholder="Tu contraseña" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="showMain()">Cancelar</button>
+                        <button type="submit" class="btn btn-verde">Ingresar</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Formulario de registro -->
+            <div class="component form-container" id="register-form">
+                <div class="form-header">
+                    <img src="img/icono_mail.png" alt="" class="form-icon">
+                    <h2 class="form-title">Registro de Usuario</h2>
+                </div>
+                <form id="register-form-element">
+                    <div class="form-group">
+                        <label class="form-label">Usuario</label>
+                        <input type="text" class="form-input" id="reg-username" placeholder="Elige un nombre de usuario"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" id="reg-email" placeholder="tu@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Fecha de Nacimiento</label>
+                        <input type="date" class="form-input" id="reg-birthdate" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Contraseña</label>
+                        <input type="password" class="form-input" id="reg-password"
+                            placeholder="Crea una contraseña segura" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="showMain()">Cancelar</button>
+                        <button type="submit" class="btn btn-verde">Registrarse</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modo seguimiento -->
+            <div class="component form-container" id="tracking-mode">
+                <div class="form-header">
+                    <img src="img/icono_mapa.png" alt="" class="form-icon">
+                    <h2 class="form-title">Modo Seguimiento</h2>
+                </div>
+                <p class="text-center mb-1">Asiste tu partida física calculando puntos automáticamente</p>
+                <div class="tracking-info">
+                    <div class="info-item">
+                        <img src="img/icono_informacion.png" alt="" class="info-icon">
+                        <span>Validación automática de reglas</span>
+                    </div>
+                    <div class="info-item">
+                        <img src="img/icono_partidas-ganadas.png" alt="" class="info-icon">
+                        <span>Cálculo de puntuación</span>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="showMain()">Volver</button>
+                    <button type="button" class="btn btn-naranja" onclick="startTracking()">Comenzar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/advanced_game_features.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/game-engine.js"></script>
+    <script src="js/tablero.js"></script>
+    <script src="js/utils.js"></script> <!-- NUEVO -->
+</body>
+
+</html>
